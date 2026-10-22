@@ -1,0 +1,65 @@
+# RIDAR detector configuration
+#
+# Usage:
+#   cp config.example.toml config.toml
+#   export RIDAR_ANALYZER_API_KEY="..."
+#   export RIDAR_VERIFIER_API_KEY="..."
+#
+# Then replace the model names and endpoints below.
+# Never store API keys in this file.
+
+# Detection mode. Normally leave this unset.
+# Supported: "default", "analyzer-only", "verifier-only"
+# mode = "default"
+
+
+[analyzer]
+
+# Claude Code CLI and Anthropic-compatible endpoint.
+executable = "claude"
+model = "your-analyzer-model"
+base_url = "https://your-anthropic-compatible-endpoint"
+api_key_env = "RIDAR_ANALYZER_API_KEY"
+
+# "api_key": x-api-key authentication, used by the official Anthropic API.
+# "auth_token": Authorization: Bearer, commonly used by compatible gateways.
+auth_mode = "api_key"
+
+# Timeouts: API_TIMEOUT_MS is milliseconds; MCP timeout is seconds.
+api_timeout_ms = 3000000
+mcp_tool_timeout = 900
+
+# The Analyzer audits untrusted trajectories. bypassPermissions provides the
+# required unattended access but should only be used in a controlled environment.
+permission_mode = "bypassPermissions"
+tools = [
+    "Bash",
+    "Read",
+    "Glob",
+    "Grep",
+    "Agent",
+    "WebSearch",
+    "WebFetch",
+]
+
+# Claude Code context compaction. Set to "" to omit --autocompact.
+autocompact = "auto"
+
+
+[verifier]
+
+# Codex CLI and OpenAI-compatible Responses API endpoint.
+executable = "codex"
+model = "your-verifier-model"
+base_url = "https://your-openai-compatible-endpoint/v1"
+api_key_env = "RIDAR_VERIFIER_API_KEY"
+
+# Codex provider configuration.
+provider_name = "ridar-verifier"
+wire_api = "responses"
+reasoning_effort = "medium"
+web_search = "live"
+multi_agent = true
+
+# Maximum wait for one Verifier operation, in seconds.
+timeout = 900

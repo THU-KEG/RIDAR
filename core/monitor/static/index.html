@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Research Integrity Monitor</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Monitor home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><strong>Research Integrity</strong><small>MONITOR</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="sync-state" id="sync-state"><i></i><span>Loading runs</span></span>
+      <button class="icon-button" id="theme-button" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.91-.1-1.35A7 7 0 0 1 12 3Z"/></svg>
+      </button>
+      <button class="refresh-button" id="refresh-runs" type="button" title="Refresh runs (R)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6.1 8A7 7 0 0 1 18.7 7M17.9 16A7 7 0 0 1 5.3 17"/></svg>Refresh
+      </button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel run-panel">
+      <div class="section-heading"><div><p>RUN INDEX</p><h2>Traces</h2></div><span id="visible-run-count">0 runs</span></div>
+      <section id="dataset-summary" class="dataset-summary" aria-label="Dataset summary"></section>
+      <div class="run-controls">
+        <label class="search-box wide"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="run-search" type="search" placeholder="Search runs…" autocomplete="off"></label>
+        <select id="run-status-filter" aria-label="Filter by status"><option value="">All statuses</option><option value="completed">Completed</option><option value="partial">Partial</option><option value="failed">Failed</option><option value="invalid">Invalid</option></select>
+        <select id="task-filter" aria-label="Filter by task"></select>
+        <select id="framework-filter" aria-label="Filter by framework"></select>
+        <select id="model-filter" aria-label="Filter by model"></select>
+      </div>
+      <nav id="run-list" class="run-list" aria-label="Collected runs"><div class="run-skeleton"></div><div class="run-skeleton"></div></nav>
+    </aside>
+
+    <section class="panel trace-panel">
+      <section id="empty-state" class="empty-state"><span class="empty-mark"><i></i><i></i><i></i></span><h2 id="empty-title">Choose a collected run</h2><p id="empty-message">Select a run to inspect its normalized trace.</p></section>
+      <div id="run-view" class="hidden">
+        <header class="run-header"><div class="run-identity"><div id="run-kicker" class="kicker"></div><h1 id="run-title"></h1><div id="run-meta" class="run-meta"></div></div><span id="run-status" class="status"></span></header>
+        <section id="health" class="health hidden"></section>
+        <div class="trace-heading"><div><p>EVENT STREAM</p><h2>Trace records</h2></div><div><span id="active-evidence" class="active-evidence"></span><span id="result-count" class="result-count">0 records</span></div></div>
+        <div class="trace-toolbar">
+          <label class="search-box trace-search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="trace-search" type="search" placeholder="Search all trace records…" autocomplete="off"><kbd>/</kbd></label>
+          <select id="agent-filter" aria-label="Filter by agent"></select>
+          <select id="type-filter" aria-label="Filter by type"><option value="">All records</option><option value="user">User</option><option value="assistant">Assistant</option><option value="reasoning">Thinking</option><option value="supervisor">Supervisor</option><option value="tool">Tools</option><option value="error">Errors</option></select>
+          <select id="tool-filter" aria-label="Filter by tool"></select>
+        </div>
+        <div id="trace" class="trace" aria-live="polite"></div>
+        <footer class="pager"><button id="previous-page" type="button">← Previous</button><span id="page-label"></span><button id="next-page" type="button">Next →</button></footer>
+      </div>
+    </section>
+
+    <aside id="insight-panel" class="panel insight-panel hidden">
+      <div class="insight-tabs" role="tablist">
+        <button id="tab-offline" class="insight-tab active" type="button" role="tab" data-tab="offline">Offline <span id="detection-count"></span></button>
+        <button id="tab-online" class="insight-tab" type="button" role="tab" data-tab="online">Online <span id="online-count"></span></button>
+      </div>
+      <div id="detections-content" class="insight-content"></div>
+      <div id="online-content" class="insight-content hidden"></div>
+    </aside>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

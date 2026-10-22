@@ -1,0 +1,18 @@
+# Python
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Dev
+.claude/
+.tmp/
+tests/
+
+# Data
+data/
+
+# Runtime
+runs
+label
+config.toml

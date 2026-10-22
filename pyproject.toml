@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ridar"
+version = "0.1.0"
+description = "Trajectory collection and research integrity detection for autoresearch agents"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = [
+    "tomli>=2; python_version < '3.11'",
+]
+
+# Extra used only by task/_construction (the paper -> spec pipeline) for its
+# PDF fallback (papers with no arXiv HTML copy). Install with:
+#   pip install -e .[construction]
+[project.optional-dependencies]
+construction = ["pymupdf>=1.28"]
+
+[project.scripts]
+ridar = "core.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["core*"]
+
+[tool.setuptools.package-data]
+core = [
+    "monitor/static/*.css",
+    "monitor/static/*.html",
+    "monitor/static/*.js",
+    "detector/offline/prompts/*.md",
+    "detector/online/prompts/*.md",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
