@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" /></a>
-  <!-- <a href="TODO"><img alt="arXiv paper" src="https://img.shields.io/badge/arXiv-paper-b31b1b?style=flat-square&logo=arxiv&logoColor=white" /></a> -->
+  <a href="https://arxiv.org/abs/2610.31372"><img alt="arXiv paper" src="https://img.shields.io/badge/arXiv-paper-b31b1b?style=flat-square&logo=arxiv&logoColor=white" /></a>
   <a href="https://huggingface.co/datasets/THU-KEG/RIDAR"><img alt="Hugging Face dataset" src="https://img.shields.io/badge/Hugging%20Face-dataset-FFD21E?style=flat-square&logo=huggingface&logoColor=black" /></a>
 </p>
 
@@ -17,8 +17,7 @@
   <a href="#overview">Overview</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#license">License</a> ·
-  <!-- TODO -->
-  <!-- <a href="#citation">Citation</a> -->
+  <a href="#citation">Citation</a>
 </p>
 
 <a id="news"></a>
@@ -140,11 +139,16 @@ Use `ridar <command> --help` for the complete command reference.
 
 RIDAR is released under the [MIT License](LICENSE).
 
-<!-- <a id="citation"></a>
+<a id="citation"></a>
 ## 📚 Citation
 
-If you find RIDAR useful, please cite our paper:
+If you use RIDAR or these datasets, please cite our [paper](https://arxiv.org/abs/2610.31372):
 
 ```bibtex
-TODO
-``` -->
+@article{siow2026ridar,
+  title={RIDAR: Safeguarding Research Integrity in Autonomous Research Agents via Automated Detection and Runtime Intervention}, 
+  author={Jiening Siow and Amy Xin and Junjie Wang and Ziyu Tang and Zijun Yao and Yunjia Qi and Fanjin Zhang and Lei Hou and Jie Tang and Juanzi Li},
+  journal={arXiv preprint arXiv:2610.31372},
+  year={2026}
+}
+```
